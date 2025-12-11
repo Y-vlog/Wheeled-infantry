@@ -1,0 +1,15 @@
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/queue.c
+wheeled infantry\queue.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+wheeled infantry\queue.o: D:\Keil\ARM\ARMCC\Bin\..\include\string.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+wheeled infantry\queue.o: D:\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+wheeled infantry\queue.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+wheeled infantry\queue.o: ../Core/Inc/FreeRTOSConfig.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+wheeled infantry\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h

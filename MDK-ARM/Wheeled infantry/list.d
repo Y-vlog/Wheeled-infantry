@@ -1,0 +1,12 @@
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/list.c
+wheeled infantry\list.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+wheeled infantry\list.o: D:\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+wheeled infantry\list.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+wheeled infantry\list.o: ../Core/Inc/FreeRTOSConfig.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+wheeled infantry\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
