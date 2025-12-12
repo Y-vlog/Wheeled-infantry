@@ -157,8 +157,6 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of Shoot */
   osThreadDef(Shoot, Shoot_Task, osPriorityNormal, 0, 256);
   ShootHandle = osThreadCreate(osThread(Shoot), NULL);
-
-  hipnuc_Init();
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */

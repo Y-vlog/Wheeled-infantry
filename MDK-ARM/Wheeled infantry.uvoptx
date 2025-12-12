@@ -190,6 +190,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>chassis_hipnuc_imu,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>INS,0x0A</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>

@@ -1,7 +1,7 @@
 Dependencies for Project 'Wheeled infantry', Target 'Wheeled infantry': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f407xx.s)(0x691B2891)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I ..\Core\Inc -I ../Middlewares/ST/ARM/DSP/Inc-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 534" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o "wheeled infantry\startup_stm32f407xx.o" --depend "wheeled infantry\startup_stm32f407xx.d")
-F (../Core/Src/main.c)(0x691B288E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\main.o" --omf_browse "wheeled infantry\main.crf" --depend "wheeled infantry\main.d")
+F (../Core/Src/main.c)(0x693BD561)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\main.o" --omf_browse "wheeled infantry\main.crf" --depend "wheeled infantry\main.d")
 I (../Core/Inc/main.h)(0x68BADA50)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6800FC9B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x68CF8A61)
@@ -74,12 +74,15 @@ I (../Bsp/CAN_receive.h)(0x691C64C4)
 I (../Bsp/M3508_Driver.h)(0x691C6C0C)
 I (../Components/Algorithm/PID/pid.h)(0x6784E7F8)
 I (../Bsp/M2006_Driver.h)(0x69281876)
-I (../Bsp/M6020_Driver.h)(0x692D6B73)
+I (../Bsp/M6020_Driver.h)(0x693BD8BA)
 I (../Application/remote_control.h)(0x68CED210)
-I (../Application/GimbalControl.h)(0x692D69D7)
+I (../Application/GimbalControl.h)(0x693BDC96)
 I (../Application/chassis_control.h)(0x6929C61F)
 I (../Bsp/Power_distribution.h)(0x6904D03B)
 I (../Application/Shoot_Control.h)(0x691AD8FE)
+I (../Application/hipnuc_imu_task.h)(0x6925A52A)
+I (../Bsp/hipnuc_dec.h)(0x6926E341)
+I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x5E8E3CC2)
 F (../Core/Src/gpio.c)(0x68BD368F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\gpio.o" --omf_browse "wheeled infantry\gpio.crf" --depend "wheeled infantry\gpio.d")
 I (../Core/Inc/gpio.h)(0x68BAC806)
 I (../Core/Inc/main.h)(0x68BADA50)
@@ -117,7 +120,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6800FC9B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6800FC9B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6800FC9B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6800FC9B)
-F (../Core/Src/freertos.c)(0x693ADAA0)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\freertos.o" --omf_browse "wheeled infantry\freertos.crf" --depend "wheeled infantry\freertos.d")
+F (../Core/Src/freertos.c)(0x693BCE0E)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\freertos.o" --omf_browse "wheeled infantry\freertos.crf" --depend "wheeled infantry\freertos.d")
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x6800FC80)
 I (D:\Keil\ARM\ARMCC\include\stddef.h)(0x5E8E3CC2)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)
@@ -184,9 +187,9 @@ I (../Core/Inc/can.h)(0x68BAC806)
 I (../Bsp/M3508_Driver.h)(0x691C6C0C)
 I (../Components/Algorithm/PID/pid.h)(0x6784E7F8)
 I (../Bsp/M2006_Driver.h)(0x69281876)
-I (../Bsp/M6020_Driver.h)(0x692D6B73)
+I (../Bsp/M6020_Driver.h)(0x693BD8BA)
 I (../Application/remote_control.h)(0x68CED210)
-I (../Application/GimbalControl.h)(0x692D69D7)
+I (../Application/GimbalControl.h)(0x693BDC96)
 I (../Application/chassis_control.h)(0x6929C61F)
 I (../Bsp/Power_distribution.h)(0x6904D03B)
 I (../Application/Shoot_Control.h)(0x691AD8FE)
@@ -1279,7 +1282,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h)(0x6800FC9B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6800FC9B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6800FC9B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6800FC9B)
-F (..\Application\All_Task.c)(0x693ADAA0)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\all_task.o" --omf_browse "wheeled infantry\all_task.crf" --depend "wheeled infantry\all_task.d")
+F (..\Application\All_Task.c)(0x693BDE45)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\all_task.o" --omf_browse "wheeled infantry\all_task.crf" --depend "wheeled infantry\all_task.d")
 I (..\Application\All_Task.h)(0x6929C61F)
 I (../Core/Inc/main.h)(0x68BADA50)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6800FC9B)
@@ -1334,8 +1337,8 @@ I (../Components/Algorithm/EKF/kalman_filter.h)(0x68839F66)
 I (D:\Keil\ARM\ARMCC\include\stdlib.h)(0x5E8E3CC2)
 I (../Bsp/Power_distribution.h)(0x6904D03B)
 I (../Application/Chassis_Control.h)(0x6929C61F)
-I (..\Application\gimbalControl.h)(0x692D69D7)
-I (../Bsp/M6020_driver.h)(0x692D6B73)
+I (..\Application\gimbalControl.h)(0x693BDC96)
+I (../Bsp/M6020_driver.h)(0x693BD8BA)
 I (..\Application\Shoot_Control.h)(0x691AD8FE)
 I (../Bsp/M2006_Driver.h)(0x69281876)
 I (..\Application\hipnuc_imu_task.h)(0x6925A52A)
@@ -1478,7 +1481,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h)(0x6800FC80)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x6800FC80)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h)(0x6800FC80)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x6800FC80)
-F (..\Application\Chassis_Control.c)(0x6925D7E5)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\chassis_control.o" --omf_browse "wheeled infantry\chassis_control.crf" --depend "wheeled infantry\chassis_control.d")
+F (..\Application\Chassis_Control.c)(0x693BDE45)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\chassis_control.o" --omf_browse "wheeled infantry\chassis_control.crf" --depend "wheeled infantry\chassis_control.d")
 I (..\Application\chassis_control.h)(0x6929C61F)
 I (../Core/Inc/main.h)(0x68BADA50)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6800FC9B)
@@ -1532,11 +1535,11 @@ I (../Bsp/Power_distribution.h)(0x6904D03B)
 I (../Application/Chassis_Control.h)(0x6929C61F)
 I (..\Application\remote_control.h)(0x68CED210)
 I (../Bsp/bsp_rc.h)(0x63135A27)
-I (..\Application\gimbalControl.h)(0x692D69D7)
-I (../Bsp/M6020_driver.h)(0x692D6B73)
-F (..\Application\GimbalControl.c)(0x692D6B58)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\gimbalcontrol.o" --omf_browse "wheeled infantry\gimbalcontrol.crf" --depend "wheeled infantry\gimbalcontrol.d")
-I (..\Application\gimbalControl.h)(0x692D69D7)
-I (../Bsp/M6020_driver.h)(0x692D6B73)
+I (..\Application\gimbalControl.h)(0x693BDC96)
+I (../Bsp/M6020_driver.h)(0x693BD8BA)
+F (..\Application\GimbalControl.c)(0x693BDC96)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\gimbalcontrol.o" --omf_browse "wheeled infantry\gimbalcontrol.crf" --depend "wheeled infantry\gimbalcontrol.d")
+I (..\Application\gimbalControl.h)(0x693BDC96)
+I (../Bsp/M6020_driver.h)(0x693BD8BA)
 I (../Core/Inc/main.h)(0x68BADA50)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6800FC9B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x68CF8A61)
@@ -1834,7 +1837,7 @@ I (../Components/Algorithm/PID/struct_typedef.h)(0x63135A27)
 I (..\Bsp\CAN_receive.h)(0x691C64C4)
 I (../Core/Inc/can.h)(0x68BAC806)
 F (..\Bsp\M6020_Driver.c)(0x6915B340)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\m6020_driver.o" --omf_browse "wheeled infantry\m6020_driver.crf" --depend "wheeled infantry\m6020_driver.d")
-I (..\Bsp\M6020_driver.h)(0x692D6B73)
+I (..\Bsp\M6020_driver.h)(0x693BD8BA)
 I (../Core/Inc/main.h)(0x68BADA50)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6800FC9B)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x68CF8A61)
@@ -1874,7 +1877,7 @@ I (../Components/Algorithm/PID/pid.h)(0x6784E7F8)
 I (../Components/Algorithm/PID/struct_typedef.h)(0x63135A27)
 I (..\Bsp\CAN_receive.h)(0x691C64C4)
 I (../Core/Inc/can.h)(0x68BAC806)
-F (..\Bsp\M2006_Driver.c)(0x6928084F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\m2006_driver.o" --omf_browse "wheeled infantry\m2006_driver.crf" --depend "wheeled infantry\m2006_driver.d")
+F (..\Bsp\M2006_Driver.c)(0x693BDA5A)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\m2006_driver.o" --omf_browse "wheeled infantry\m2006_driver.crf" --depend "wheeled infantry\m2006_driver.d")
 I (..\Bsp\M2006_Driver.h)(0x69281876)
 I (../Core/Inc/main.h)(0x68BADA50)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6800FC9B)
@@ -1973,8 +1976,8 @@ I (D:\Keil\ARM\ARMCC\include\stdlib.h)(0x5E8E3CC2)
 I (../Bsp/Power_distribution.h)(0x6904D03B)
 I (../Application/remote_control.h)(0x68CED210)
 I (../Bsp/bsp_rc.h)(0x63135A27)
-I (../Application/gimbalControl.h)(0x692D69D7)
-I (../Bsp/M6020_driver.h)(0x692D6B73)
+I (../Application/gimbalControl.h)(0x693BDC96)
+I (../Bsp/M6020_driver.h)(0x693BD8BA)
 F (..\Bsp\hipnuc_dec.c)(0x6925A650)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Application -I ../Bsp -I ../Components/Algorithm/EKF -I ../Components/Algorithm/PID -I ../Components/Controller -I ../Components/Devices/Gyroscope -I ../Middlewares/ST/ARM/DSP/Inc -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS-I.\RTE\_Wheeled_infantry-ID:\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-ID:\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4="1" -DSTM32F407xx-o "wheeled infantry\hipnuc_dec.o" --omf_browse "wheeled infantry\hipnuc_dec.crf" --depend "wheeled infantry\hipnuc_dec.d")
 I (..\Bsp\hipnuc_dec.h)(0x6926E341)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x5E8E3CC2)

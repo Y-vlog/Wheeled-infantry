@@ -71,7 +71,7 @@ void Chassis_Task(void const * argument)
 //                prev_xSpeed = setChassis_xSpeed;
 //                prev_ySpeed = setChassis_ySpeed;
 //                prev_zSpeed = setChassis_zSpeed;   
-                 INS_Total = Yaw_Gimbal_6020_angle(&Yaw_Gimbal_Motor);         // INS_Total[-180,180]
+                 INS_Total = Yaw_Gimbal_6020_angle(&Yaw_Gimbal_Motor);                               // INS_Total[-180,180]
                        
                  ChassisGyro_Task(raw_xSpeed, raw_ySpeed, raw_zSpeed, CHASSIS_ROTATE_K, INS_Total); 
                 
@@ -82,7 +82,6 @@ void Chassis_Task(void const * argument)
             
                 raw_xSpeed = rc_ctrl.rc.ch[0] * Speed_K;
                 raw_ySpeed = rc_ctrl.rc.ch[1] * Speed_K;
-                raw_zSpeed = rc_ctrl.rc.ch[4] * Speed_K;
 
 //                // 应用低通滤波
 //                setChassis_xSpeed = alpha * raw_xSpeed + (1 - alpha) * prev_xSpeed;
@@ -97,7 +96,7 @@ void Chassis_Task(void const * argument)
             
                 // 底盘跟随云台功能需要实现
                 INS_Total = Yaw_Gimbal_6020_angle(&Yaw_Gimbal_Motor);
-                ChassisPositionControl_Task(raw_xSpeed,raw_ySpeed,1,INS_Total,0);
+                ChassisPositionControl_Task(raw_xSpeed,raw_ySpeed, CHASSIS_ROTATE_K, INS_Total, 0);
                break;
             
             case ChassisSepa:  // 分离模式
@@ -146,6 +145,7 @@ void Chassis_Task(void const * argument)
 
 uint8_t GimbalMode = GIMBAL_MODE_WAIT;
 int16_t pitch_output = 0;
+int16_t pitch_angle_output = 0;
 int16_t pitch_GravityCompensation = 0;
 int16_t yaw_angle_output = 0;
 int16_t yaw_output = 0;
@@ -170,10 +170,11 @@ void Gimbal_Task(void const * argument)
                 yaw_output = Yaw_Gimbal_ControlOfIMU(INS.YawTotalAngle, yaw_angle_output);
 
                 //pitch_GravityCompensation = GravityCompensation(&Pitch_Gimbal_Motor);
-//                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]) + pitch_GravityCompensation;
-//                pitch_output = Pitch_Gimbal_ControlOfECD((int16_t)chassis_hipnuc_imu.hi91.roll, set_pitch);
-                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
-                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
+                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]);
+                pitch_angle_output = set_pitch + pitch_GravityCompensation;
+                pitch_output = Pitch_Gimbal_ControlOfIMU(INS.Roll, pitch_angle_output);
+//                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
+//                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
                 
                 CAN_cmd_gimbal(yaw_output, pitch_output);
 
@@ -190,10 +191,11 @@ void Gimbal_Task(void const * argument)
                 yaw_output = Yaw_Gimbal_ControlOfIMU(INS.YawTotalAngle, yaw_angle_output);
 
                 //pitch_GravityCompensation = GravityCompensation(&Pitch_Gimbal_Motor);
-//                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]) + pitch_GravityCompensation;
-//                pitch_output = Pitch_Gimbal_ControlOfECD((int16_t)chassis_hipnuc_imu.hi91.roll, set_pitch);
-                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
-                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
+                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]);
+                pitch_angle_output = set_pitch + pitch_GravityCompensation;
+                pitch_output = Pitch_Gimbal_ControlOfIMU(INS.Roll, pitch_angle_output);
+//                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
+//                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
                 
                 CAN_cmd_gimbal(yaw_output, pitch_output);
                 
@@ -210,10 +212,11 @@ void Gimbal_Task(void const * argument)
                 yaw_output = Yaw_Gimbal_ControlOfIMU(INS.YawTotalAngle, yaw_angle_output);
 
                 //pitch_GravityCompensation = GravityCompensation(&Pitch_Gimbal_Motor);
-//                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]) + pitch_GravityCompensation;
-//                pitch_output = Pitch_Gimbal_ControlOfECD((int16_t)chassis_hipnuc_imu.hi91.roll, set_pitch);
-                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
-                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
+                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]);
+                pitch_angle_output = set_pitch + pitch_GravityCompensation;
+                pitch_output = Pitch_Gimbal_ControlOfIMU(INS.Roll, pitch_angle_output);
+//                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
+//                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
                 
                 CAN_cmd_gimbal(yaw_output, pitch_output);
                 

@@ -43,6 +43,7 @@
 #include "Shoot_Control.h"
 #include "Chassis_Control.h"
 #include "Power_distribution.h"
+#include "hipnuc_imu_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,7 +75,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-extern M6020_HandleTypeDef Yaw_Gimbal_Motor;
+
 /* USER CODE END 0 */
 
 /**
@@ -122,6 +123,7 @@ int main(void)
     Shoot_Init();   
     DWT_Init(168);																//BMI088��ʹ�ã�RTOS��
     while (BMI088_init(&hspi1, 1) != BMI088_NO_ERROR);
+    hipnuc_Init();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

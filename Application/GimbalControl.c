@@ -59,7 +59,7 @@ int16_t Pitch_Gimbal_ControlOfECD(int16_t rc_3)
 	M6020_GetBasicData(&Pitch_Gimbal_Motor);//先获取数据
     
    // 转换为0~8191的环形范围（处理负值和超范围值）
-    int16_t encoder_val = rc_3 * Pitch_Sensitivity + Pitch_Began_Meddle_ecd;
+    int16_t encoder_val = rc_3 * Pitch_Sensitivity + Pitch_Began_ecd;
     
     encoder_val %= ENCODER_MAX_VALUE;  // 取模运算缩小到-8192~8192
     if (encoder_val < 0)
@@ -151,8 +151,7 @@ int16_t Pitch_Gimbal_Contro_Angle(int16_t Remota_Control_ch3)
         angle_acc_Pitch = PITCH_MIN_Angle;
     }
 
-    // 没有输入 → 保持累积角度，不动
-    return -angle_acc_Pitch;
+    return angle_acc_Pitch;
 }
 
 /**
@@ -163,7 +162,6 @@ int16_t Pitch_Gimbal_Contro_Angle(int16_t Remota_Control_ch3)
   * @param[in]      targetpostion：Pitch轴目标角度[-180,180]
   * @retval         yaw轴串级pid输出
   */
-static int16_t Last_Output_PITCH = 0;
 int16_t Pitch_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
 {
     M6020_GetBasicData(&Pitch_Gimbal_Motor);
@@ -180,11 +178,7 @@ int16_t Pitch_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
     target_rpm
     );
     
-    int16_t error_taget = (int16_t)M6020_Forcast_PID * (output - Last_Output_PITCH);
-    
-    Last_Output_PITCH = output;
-    
-    output = error_taget + output;
+    int16_t output_two = output + Yaw_Gimbal_Motor.Basic_Data->speed_rpm * Kff_Pitch_Speed;
     
     //    //电流限幅（保护电机）
 //    if (output > MOTOR_CURRENT_LIMIT)
@@ -197,7 +191,7 @@ int16_t Pitch_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
 //        output = -MOTOR_CURRENT_LIMIT;
 //    }
     
-	return output;
+	return output_two;
 }
 
 
@@ -237,7 +231,6 @@ int16_t Yaw_Gimbal_Contro_Angle(int16_t Remota_Control_ch2)
   * @param[in]      targetpostion：yaw轴目标角度[-180,180]
   * @retval         yaw轴串级pid输出
   */
-static int16_t Last_Output_YAW = 0;
 int16_t Yaw_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
 {
     M6020_GetBasicData(&Yaw_Gimbal_Motor);
@@ -254,11 +247,7 @@ int16_t Yaw_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
     target_rpm
     );
     
-    int16_t error_taget = (int16_t)M6020_Forcast_PID * (output - Last_Output_YAW);
-    
-    Last_Output_YAW = output;
-    
-    output = error_taget + output;
+    int16_t output_two = output + Yaw_Gimbal_Motor.Basic_Data->speed_rpm * Kff_Yaw_Speed;
     
 //    //电流限幅（保护电机）
 //    if (output > MOTOR_CURRENT_LIMIT)
@@ -271,7 +260,7 @@ int16_t Yaw_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
 //        output = -MOTOR_CURRENT_LIMIT;
 //    }
     
-	return output;
+	return output_two;
 }
 
 /**
@@ -314,7 +303,7 @@ int16_t Yaw_Gimbal_6020_angle(M6020_HandleTypeDef *device)
   */
 int16_t GravityCompensation(const M6020_HandleTypeDef* device)
 {
-	float angle = ((float)device->Basic_Data->ecd - (float)Pitch_Began_Meddle_ecd) * 360 / 8191  * RADIAN_COEF_CHASSIS;
+	float angle = ((float)device->Basic_Data->ecd - (float)Pitch_Began_ecd) * 360 / 8191  * RADIAN_COEF_CHASSIS;
 	float cos = 0.0f;
 	float sin = 0.0f;
        

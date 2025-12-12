@@ -4,9 +4,8 @@
 #include "M6020_driver.h"
 #include "chassis_control.h"
 
-#define M6020_Forcast_PID 1.2f //6020电流最大值
-
-#define MOTOR_CURRENT_LIMIT 4000 //6020电流最大值
+#define Kff_Yaw_Speed 1.2f       //Yaw轴M6020PID前馈
+#define Kff_Pitch_Speed 1.2f     //Pitch轴M6020PID前馈
 
 #define ENCODER_MAX_VALUE 8192
 #define ENCODER_HALF_VALUE 4096
@@ -14,13 +13,12 @@
 #define PITCH_MIN_ecd 3729    // 最小允许编码器
 #define PITCH_MAX_ecd 4525    // 最大允许编码器
 
-#define PITCH_MIN_Angle -18    // 最小允许编码器
-#define PITCH_MAX_Angle 28    // 最大允许编码器
+#define PITCH_MIN_Angle -18    // 最小允许角度
+#define PITCH_MAX_Angle 28    // 最大允许角度
 
-#define Pitch_Began_Meddle_ecd 4150      //机械装配正方向中段编码器值
-
-#define YAW_Began_ecd 723      //机械装配正方向编码器值
-#define MOTOR_CURRENT_LIMIT 4000 //6020电流最大值
+#define Pitch_Began_ecd 4150              //机械装配正方向编码器值
+#define YAW_Began_ecd 723                 //机械装配正方向编码器值
+#define MOTOR_CURRENT_LIMIT 4000          //6020电流最大值
 
 #define YAW_Sensitivity 1.0f
 #define Pitch_Sensitivity 0.5f

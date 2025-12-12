@@ -27,11 +27,25 @@ Project File Date:  11/17/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil\ARM\ARMCC\Bin'
 Build target 'Wheeled infantry'
-compiling hipnuc_imu_task.c...
+compiling Chassis_Control.c...
+compiling All_Task.c...
+..\Application\All_Task.c(50): warning:  #177-D: variable "setChassis_xSpeed"  was declared but never referenced
+      int16_t setChassis_xSpeed = 0;
+..\Application\All_Task.c(51): warning:  #177-D: variable "setChassis_ySpeed"  was declared but never referenced
+      int16_t setChassis_ySpeed = 0;
+..\Application\All_Task.c(52): warning:  #177-D: variable "setChassis_zSpeed"  was declared but never referenced
+      int16_t setChassis_zSpeed = 0;
+..\Application\All_Task.c(34): warning:  #177-D: variable "prev_xSpeed"  was declared but never referenced
+  static float prev_xSpeed = 0;
+..\Application\All_Task.c(35): warning:  #177-D: variable "prev_ySpeed"  was declared but never referenced
+  static float prev_ySpeed = 0;
+..\Application\All_Task.c(36): warning:  #177-D: variable "prev_zSpeed"  was declared but never referenced
+  static float prev_zSpeed = 0;
+..\Application\All_Task.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=53200 RO-data=2912 RW-data=1412 ZI-data=64436  
+Program Size: Code=53332 RO-data=2912 RW-data=1404 ZI-data=64436  
 FromELF: creating hex file...
-"Wheeled infantry\Wheeled infantry.axf" - 0 Error(s), 0 Warning(s).
+"Wheeled infantry\Wheeled infantry.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 

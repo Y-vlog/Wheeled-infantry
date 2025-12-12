@@ -221,7 +221,7 @@ void ChassisPositionControl_Task(int16_t World_Xvector,int16_t World_Yvector,flo
 	/*角加速度环*/
 	int16_t output = PID_calc(&Chassis_Speed_PID, Yaw_Gimbal_Motor.Basic_Data->speed_rpm, targetspeed); 
 	
-	Chassis_WheatWheel_Solution(World_Xvector,World_Yvector,output,rotateK);//速度环
+	Chassis_WheatWheel_Solution(World_Xvector, World_Yvector, output, rotateK);//速度环
 }
 
 /**
