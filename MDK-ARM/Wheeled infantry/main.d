@@ -76,6 +76,7 @@ wheeled infantry\main.o: ../Bsp/M3508_Driver.h
 wheeled infantry\main.o: ../Bsp/M2006_Driver.h
 wheeled infantry\main.o: ../Bsp/M6020_Driver.h
 wheeled infantry\main.o: ../Application/remote_control.h
+wheeled infantry\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\main.o: ../Application/GimbalControl.h
 wheeled infantry\main.o: ../Application/chassis_control.h
 wheeled infantry\main.o: ../Bsp/Power_distribution.h
@@ -84,5 +85,4 @@ wheeled infantry\main.o: ../Application/gimbalControl.h
 wheeled infantry\main.o: ../Application/Shoot_Control.h
 wheeled infantry\main.o: ../Application/hipnuc_imu_task.h
 wheeled infantry\main.o: ../Bsp/hipnuc_dec.h
-wheeled infantry\main.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h

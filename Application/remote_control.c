@@ -186,3 +186,13 @@ static void sbus_to_rc(volatile const uint8_t *sbus_buf, RC_ctrl_t *rc_ctrl)
     rc_ctrl->rc.ch[3] -= RC_CH_VALUE_OFFSET;
     rc_ctrl->rc.ch[4] -= RC_CH_VALUE_OFFSET;
 }
+
+
+//USART 对printf重定向
+//int fputc(int ch, FILE *f)
+//{
+//    while ((USARTX->SR & 0X40) == 0);         //后续调试更改不同串口发送端                              
+// 
+//    USARTX->DR = (uint8_t)ch;                 //后续调试更改不同串口发送端                           
+//    return ch;
+//}

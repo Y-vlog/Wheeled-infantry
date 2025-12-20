@@ -53,6 +53,12 @@ void M3508_Init(M3508_HandleTypeDef* device,uint8_t M3508_ID,enum PID_MODE Mode,
             PID_SPEED[1] = M3508_ID4_SPEEDPID_POSITION_KI;
             PID_SPEED[2] = M3508_ID4_SPEEDPID_POSITION_KD;
               break;
+            
+            case CAN_3508_M5_ID:break;
+            case CAN_3508_M6_ID:break;
+            case CAN_3508_M7_ID:break;
+            case CAN_3508_M8_ID:break;
+            
             default :break;
           }
         }
@@ -83,6 +89,12 @@ void M3508_Init(M3508_HandleTypeDef* device,uint8_t M3508_ID,enum PID_MODE Mode,
         PID_SPEED[1] = M3508_ID4_SPEEDPID_DELTA_KI;
         PID_SPEED[2] = M3508_ID4_SPEEDPID_DELTA_KD;
           break;
+        
+        case CAN_3508_M5_ID:break;
+        case CAN_3508_M6_ID:break;
+        case CAN_3508_M7_ID:break;
+        case CAN_3508_M8_ID:break;
+        
         default :break;
       }		
     }
@@ -94,13 +106,13 @@ void M3508_Init(M3508_HandleTypeDef* device,uint8_t M3508_ID,enum PID_MODE Mode,
     {
       switch(0x200 + M3508_ID)
       {
-        case CAN_TRIGGER_FIRE_MOTOR_ID1:
+        case CAN_TRIGGER_FIRE_MOTOR_Lift:
         PID_SPEED[0] = FRICTION_ID1_SPEEDPID_POSITION_KP;
         PID_SPEED[1] = FRICTION_ID1_SPEEDPID_POSITION_KI;
         PID_SPEED[2] = FRICTION_ID1_SPEEDPID_POSITION_KD;
           break;
         
-        case CAN_TRIGGER_FIRE_MOTOR_ID2:
+        case CAN_TRIGGER_FIRE_MOTOR_Right:
         PID_SPEED[0] = FRICTION_ID2_SPEEDPID_POSITION_KP;
         PID_SPEED[1] = FRICTION_ID2_SPEEDPID_POSITION_KI;
         PID_SPEED[2] = FRICTION_ID2_SPEEDPID_POSITION_KD;
@@ -113,13 +125,13 @@ void M3508_Init(M3508_HandleTypeDef* device,uint8_t M3508_ID,enum PID_MODE Mode,
     {
       switch(0x200 + M3508_ID)
       {
-        case CAN_TRIGGER_FIRE_MOTOR_ID1:
+        case CAN_TRIGGER_FIRE_MOTOR_Lift:
         PID_SPEED[0] = FRICTION_ID1_SPEEDPID_DELTA_KP;
         PID_SPEED[1] = FRICTION_ID1_SPEEDPID_DELTA_KI;
         PID_SPEED[2] = FRICTION_ID1_SPEEDPID_DELTA_KD;
           break;
         
-        case CAN_TRIGGER_FIRE_MOTOR_ID2:
+        case CAN_TRIGGER_FIRE_MOTOR_Right:
         PID_SPEED[0] = FRICTION_ID2_SPEEDPID_DELTA_KP;
         PID_SPEED[1] = FRICTION_ID2_SPEEDPID_DELTA_KI;
         PID_SPEED[2] = FRICTION_ID2_SPEEDPID_DELTA_KD;
@@ -156,7 +168,7 @@ void M3508_GetBasicData(M3508_HandleTypeDef* device,uint8_t ifWheel)
             case CAN_3508_M3_ID:
             case CAN_3508_M4_ID: 
             {
-                device->Basic_Data= get_chassis_motor_measure_point(device->M3508_ID-1);
+                device->Basic_Data= get_chassis_motor_measure_point(device->M3508_ID - 1);
             }break;
             default:break;
         }   
@@ -166,10 +178,10 @@ void M3508_GetBasicData(M3508_HandleTypeDef* device,uint8_t ifWheel)
     {
         switch(device->M3508_ID+0x200)
         {
-            case CAN_TRIGGER_FIRE_MOTOR_ID1:
-            case CAN_TRIGGER_FIRE_MOTOR_ID2:
+            case CAN_TRIGGER_FIRE_MOTOR_Lift:
+            case CAN_TRIGGER_FIRE_MOTOR_Right:
             {
-                device->Basic_Data = get_Fire_motor_measure_point(device->M3508_ID);
+                device->Basic_Data = get_Fire_motor_measure_point(device->M3508_ID + 2);
             }break;
             default:break;
         }

@@ -39,19 +39,26 @@ void Get_CAN2_RX_Data(CAN_TX_RX_t *Ptrr,uint8_t *Date);
 /*
 motor data,  0:chassis motor1 3508;1:chassis motor3 3508;2:chassis motor3 3508;3:chassis motor4 3508;
 4:yaw gimbal motor 6020;5:pitch gimbal motor 6020;6:trigger motor 2006;
-电机数据, 0:底盘电机1 3508电机,   1:底盘电机2 3508电机,     2:底盘电机3 3508电机, 3:底盘电机4 3508电机;
+电机数据, 0:底盘电机1 3508电机,     1:底盘电机2 3508电机,       2:底盘电机3 3508电机,         3:底盘电机4 3508电机;
+          4:底盘电机1 3508电机,    5:底盘电机1 3508电机,       6:底盘电机1 3508电机,         7:底盘电机1 3508电机;
           4:yaw云台电机 6020电机; 5:pitch云台电机 6020电机; 6:拨弹电机 2006电机 ; 7:摩擦轮1 3508电机;
           8:摩擦轮2 3508电机
 */
-static motor_measure_t motor_chassis[9];
+static motor_measure_t motor_chassis[13];
 
+//底盘    
+static CAN_TxHeaderTypeDef  chassis_tx_message;
+static uint8_t              chassis_can_send_data[8];   
+static CAN_TxHeaderTypeDef  chassis_tx_message_Pedrail;
+static uint8_t              chassis_can_send_data_Pedrail[8];
+
+//云台与发射部分
 static CAN_TxHeaderTypeDef  gimbal_tx_message;
 static uint8_t              gimbal_can_send_data[8];
 static CAN_TxHeaderTypeDef  gimbal_tx_message_Fire;
 static uint8_t              gimbal_can_send_data_Fire[8];
-static CAN_TxHeaderTypeDef  chassis_tx_message;
-static uint8_t              chassis_can_send_data[8];
 
+//CAN通信
 CAN_TX_RX_t CAN2_RX;
 static CAN_TxHeaderTypeDef	CAN_TxStructure;
 static uint8_t              CAN2_Tx_Data[8];
@@ -73,14 +80,14 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     HAL_StatusTypeDef read_status;
 
     /************************** 关键：中断异常处理 **************************/
-    // 1. 检查FIFO0溢出（若溢出，消息已丢失，需清除标志）
+    //检查FIFO0溢出（若溢出，消息已丢失，需清除标志）
     if (__HAL_CAN_GET_FLAG(hcan, CAN_FLAG_FOV0) != RESET)
     {
         __HAL_CAN_CLEAR_FLAG(hcan, CAN_FLAG_FOV0); // 清除溢出标志
         return;
     }
 
-    // 2. 读取FIFO0消息（检查返回值，避免读取失败）
+    // 读取FIFO0消息（检查返回值，避免读取失败）
     read_status = HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &CAN1_RX_header, CAN1_RX_data);
     if (read_status != HAL_OK)
     {
@@ -96,14 +103,16 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
         case CAN_3508_M3_ID:
         case CAN_3508_M4_ID:
             
-        case CAN_YAW_MOTOR_ID:
-        case CAN_PIT_MOTOR_ID:
+        case CAN_3508_M5_ID:
+        case CAN_3508_M6_ID:
+        case CAN_3508_M7_ID:
+        case CAN_3508_M8_ID:
         {
             static uint8_t can_1_motor_idx = 0;
             // 计算电机索引（确保ID连续，若ID不连续需单独赋值）
             can_1_motor_idx = CAN1_RX_header.StdId - CAN_3508_M1_ID;
             // 若电机索引超出范围，跳过（避免数组越界）
-            if (can_1_motor_idx >= 9) break;
+            if (can_1_motor_idx >= 8) break;  
             // 读取电机数据（建议此函数仅做数据解析，无阻塞/耗时操作）
             get_motor_measure(&motor_chassis[can_1_motor_idx], CAN1_RX_data);
             break;
@@ -123,14 +132,14 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
     HAL_StatusTypeDef read_status;
 
     /************************** 关键：中断异常处理 **************************/
-    // 1. 检查FIFO1溢出（CAN2-FIFO1专属溢出标志）
+    //检查FIFO1溢出（CAN2-FIFO1专属溢出标志）
     if (__HAL_CAN_GET_FLAG(hcan, CAN_FLAG_FOV1) != RESET)
     {
         __HAL_CAN_CLEAR_FLAG(hcan, CAN_FLAG_FOV1);
         return;
     }
 
-    // 2. 读取FIFO1消息（检查返回值）
+    //读取FIFO1消息（检查返回值）
     read_status = HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO1, &CAN2_RX_header, CAN2_RX_data);
     if (read_status != HAL_OK)
     {
@@ -140,16 +149,18 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
     /************************** 正常处理底板数据 **************************/
     switch (CAN2_RX_header.StdId)
     {
-        case CAN_TRIGGER_UP_MOTOR_ID:
-            
-        case CAN_TRIGGER_FIRE_MOTOR_ID1:
-        case CAN_TRIGGER_FIRE_MOTOR_ID2:
+        case CAN_TRIGGER_UP_MOTOR_ID:  
+        case CAN_TRIGGER_FIRE_MOTOR_Lift:
+        case CAN_TRIGGER_FIRE_MOTOR_Right:
+        
+        case CAN_YAW_MOTOR_ID:
+        case CAN_PIT_MOTOR_ID:
         {
             static uint8_t can_2_motor_idx = 0;
-            // 计算电机索引（确保ID连续，若ID不连续需单独赋值）
-            can_2_motor_idx = CAN2_RX_header.StdId;
+            // 计算电机索引
+            can_2_motor_idx = CAN2_RX_header.StdId - CAN_CHASSIS_ALL_ID + 2;
             // 若电机索引超出范围，跳过（避免数组越界）
-            if (can_2_motor_idx >= 9) break;
+            if (can_2_motor_idx >= 13) break;
             // 读取电机数据（建议此函数仅做数据解析，无阻塞/耗时操作）
             get_motor_measure(&motor_chassis[can_2_motor_idx], CAN2_RX_data);
             break;
@@ -161,9 +172,9 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
 
 
 /**
-  * @brief          发送电机控制电流(0x205,0x206,0x207,0x208)
-  * @param[in]      yaw: (0x205) 6020电机控制电流, 范围 [-30000,30000]
-  * @param[in]      pitch: (0x206) 6020电机控制电流, 范围 [-30000,30000]
+  * @brief          发送电机控制电流(0x209,0x20A)
+  * @param[in]      yaw: (0x209) 6020电机控制电流, 范围 [-30000,30000]
+  * @param[in]      pitch: (0x20A) 6020电机控制电流, 范围 [-30000,30000]
   * @retval         none
   */
 void CAN_cmd_gimbal(int16_t yaw, int16_t pitch)
@@ -184,20 +195,20 @@ void CAN_cmd_gimbal(int16_t yaw, int16_t pitch)
     gimbal_can_send_data[7] = 0;
     
 
-    HAL_CAN_AddTxMessage(&CHASSIS_CAN, &gimbal_tx_message, gimbal_can_send_data, &send_mail_box); //hcan1
+    HAL_CAN_AddTxMessage(&GIMBAL_CAN, &gimbal_tx_message, gimbal_can_send_data, &send_mail_box); //hcan2
 }
 
 /**
-  * @brief          发送电机控制电流(0x205,0x206,0x207,0x208)
-  * @param[in]      shoot1: (0x205) 3508电机控制电流, 范围 [-30000,30000]
-  * @param[in]      shoot2: (0x206) 3508电机控制电流, 范围 [-30000,30000]
+  * @brief          发送电机控制电流(0x206,0x207,0x208)
+  * @param[in]      shoot_Left: (0x207) 3508电机控制电流, 范围 [-30000,30000]
+  * @param[in]      shoot_Right: (0x208) 3508电机控制电流, 范围 [-30000,30000]
   * @param[in]      trigger: (0x206) 2006电机控制电流, 范围 [-30000,30000]
   * @retval         none
   */
 void CAN_cmd_gimbal_Frie(int16_t trigger, int16_t shoot_Left, int16_t shoot_Right)
 {
     uint32_t send_mail_box;
-    gimbal_tx_message_Fire.StdId = CAN_GIMBAL_ALL_ID;//拨弹和两个摩擦轮的id
+    gimbal_tx_message_Fire.StdId = CAN_SHOOT_ALL_ID;               //拨弹和两个摩擦轮的ALL_ID
     gimbal_tx_message_Fire.IDE = CAN_ID_STD;
     gimbal_tx_message_Fire.RTR = CAN_RTR_DATA;
     gimbal_tx_message_Fire.DLC = 0x08;
@@ -266,13 +277,40 @@ void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int16_t mot
 }
 
 /**
+  * @brief          发送电机控制电流(0x205,0x206,0x207,0x208)
+  * @param[in]      motor1: (0x205) 3508电机控制电流, 范围 [-16384,16384]
+  * @param[in]      motor2: (0x206) 3508电机控制电流, 范围 [-16384,16384]
+  * @param[in]      motor3: (0x207) 3508电机控制电流, 范围 [-16384,16384]
+  * @param[in]      motor4: (0x208) 3508电机控制电流, 范围 [-16384,16384]
+  * @retval         none
+  */
+void CAN_cmd_chassis_Pedrail(int16_t motor5, int16_t motor6, int16_t motor7, int16_t motor8)
+{
+    uint32_t send_mail_box;
+    chassis_tx_message_Pedrail.StdId = CAN_CHASSIS_ALL_ID_Pedrail;
+    chassis_tx_message_Pedrail.IDE = CAN_ID_STD;
+    chassis_tx_message_Pedrail.RTR = CAN_RTR_DATA;
+    chassis_tx_message_Pedrail.DLC = 0x08;
+    chassis_can_send_data_Pedrail[0] = motor5 >> 8;
+    chassis_can_send_data_Pedrail[1] = motor5;
+    chassis_can_send_data_Pedrail[2] = motor6 >> 8;
+    chassis_can_send_data_Pedrail[3] = motor6;
+    chassis_can_send_data_Pedrail[4] = motor7 >> 8;
+    chassis_can_send_data_Pedrail[5] = motor7;
+    chassis_can_send_data_Pedrail[6] = motor8 >> 8;
+    chassis_can_send_data_Pedrail[7] = motor8;
+
+    HAL_CAN_AddTxMessage(&CHASSIS_CAN, &chassis_tx_message_Pedrail, chassis_can_send_data_Pedrail, &send_mail_box);//hcan1
+}
+
+/**
   * @brief          返回yaw 6020电机数据指针
   * @param[in]      none
   * @retval         电机数据指针
   */
 const motor_measure_t *get_yaw_gimbal_motor_measure_point(void)
 {
-    return &motor_chassis[4];
+    return &motor_chassis[11];
 }
 
 /**
@@ -282,9 +320,18 @@ const motor_measure_t *get_yaw_gimbal_motor_measure_point(void)
   */
 const motor_measure_t *get_pitch_gimbal_motor_measure_point(void)
 {
-    return &motor_chassis[5];
+    return &motor_chassis[12];
 }
 
+/**
+  * @brief          返回底盘电机 3508电机数据指针
+  * @param[in]      ID: 电机编号,范围[0,7]
+  * @retval         电机数据指针
+  */
+const motor_measure_t *get_chassis_motor_measure_point(uint8_t i)
+{
+    return &motor_chassis[(i & 0x0F)];
+}
 
 /**
   * @brief          返回拨弹电机 2006电机数据指针
@@ -293,23 +340,12 @@ const motor_measure_t *get_pitch_gimbal_motor_measure_point(void)
   */
 const motor_measure_t *get_trigger_motor_measure_point(void)
 {
-    return &motor_chassis[6];
-}
-
-
-/**
-  * @brief          返回底盘电机 3508电机数据指针
-  * @param[in]      i: 电机编号,范围[0,3]
-  * @retval         电机数据指针
-  */
-const motor_measure_t *get_chassis_motor_measure_point(uint8_t i)
-{
-    return &motor_chassis[(i & 0x03)];
+    return &motor_chassis[8];
 }
 
 /**
   * @brief          返回摩擦轮电机 3508电机数据指针
-  * @param[in]      i: 电机编号,范围[7，8]
+  * @param[in]      ID: 电机编号,范围[9，10]
   * @retval         电机数据指针
   */
 const motor_measure_t *get_Fire_motor_measure_point(uint8_t i)

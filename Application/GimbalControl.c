@@ -31,8 +31,8 @@ float Pitch_sin;
 void Gimbal_Init(void)
 {
 	/*初始化云台相关电机(注意更改ID号)，PID电压控制*/
-	M6020_Init(&Yaw_Gimbal_Motor, 0x01, PID_POSITION, CAN_CMD_VOLTAGE);
-	M6020_Init(&Pitch_Gimbal_Motor, 0x02, PID_POSITION, CAN_CMD_VOLTAGE);
+	M6020_Init(&Yaw_Gimbal_Motor, 0x09, PID_POSITION, CAN_CMD_VOLTAGE);
+	M6020_Init(&Pitch_Gimbal_Motor, 0x0A, PID_POSITION, CAN_CMD_VOLTAGE);
 	
 //	/*初始化pitch重力补偿相关参数*/
 	Compensation_Factor = 4000;
@@ -105,16 +105,16 @@ int16_t Pitch_Gimbal_ControlOfECD(int16_t rc_3)
         target_rpm
     );
 
-//    //电流限幅（保护电机）
-//    if (output > MOTOR_CURRENT_LIMIT)
-//    {
-//        output = MOTOR_CURRENT_LIMIT;
-//    }
-//    
-//    else if (output < -MOTOR_CURRENT_LIMIT)
-//    {
-//        output = -MOTOR_CURRENT_LIMIT;
-//    }
+    //电流限幅（保护电机）
+    if (output > MOTOR_CURRENT_LIMIT)
+    {
+        output = MOTOR_CURRENT_LIMIT;
+    }
+    
+    else if (output < -MOTOR_CURRENT_LIMIT)
+    {
+        output = -MOTOR_CURRENT_LIMIT;
+    }
 	
     return output;
 }
@@ -180,16 +180,16 @@ int16_t Pitch_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
     
     int16_t output_two = output + Yaw_Gimbal_Motor.Basic_Data->speed_rpm * Kff_Pitch_Speed;
     
-    //    //电流限幅（保护电机）
-//    if (output > MOTOR_CURRENT_LIMIT)
-//    {
-//        output = MOTOR_CURRENT_LIMIT;
-//    }
-//    
-//    else if (output < -MOTOR_CURRENT_LIMIT)
-//    {
-//        output = -MOTOR_CURRENT_LIMIT;
-//    }
+    //电流限幅（保护电机）
+    if (output_two > MOTOR_CURRENT_LIMIT)
+    {
+        output_two = MOTOR_CURRENT_LIMIT;
+    }
+    
+    else if (output_two < -MOTOR_CURRENT_LIMIT)
+    {
+        output_two = -MOTOR_CURRENT_LIMIT;
+    }
     
 	return output_two;
 }
@@ -249,16 +249,16 @@ int16_t Yaw_Gimbal_ControlOfIMU(int16_t real_angle ,int16_t target_angle)
     
     int16_t output_two = output + Yaw_Gimbal_Motor.Basic_Data->speed_rpm * Kff_Yaw_Speed;
     
-//    //电流限幅（保护电机）
-//    if (output > MOTOR_CURRENT_LIMIT)
-//    {
-//        output = MOTOR_CURRENT_LIMIT;
-//    }
-//    
-//    else if (output < -MOTOR_CURRENT_LIMIT)
-//    {
-//        output = -MOTOR_CURRENT_LIMIT;
-//    }
+    //电流限幅（保护电机）
+    if (output_two > MOTOR_CURRENT_LIMIT)
+    {
+        output_two = MOTOR_CURRENT_LIMIT;
+    }
+    
+    else if (output_two < -MOTOR_CURRENT_LIMIT)
+    {
+        output_two = -MOTOR_CURRENT_LIMIT;
+    }
     
 	return output_two;
 }

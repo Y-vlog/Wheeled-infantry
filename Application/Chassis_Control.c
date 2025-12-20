@@ -93,12 +93,6 @@ void Chassis_WheatWheel_Solution(int16_t ChassisXvector, int16_t ChassisYvectory
 	M3508_GetBasicData(&Wheel_M3508Handle[3],1);
     
 //    int16_t current_speeds[4] = {0};  //功率计算存储电流值
-
-    /*全向轮解算*/
-//	int16_t targetspeedMA = ChassisXvector + ChassisYvectory + ChassisRotatevector * rotateK;
-//	int16_t targetspeedMB = ChassisXvector - ChassisYvectory - ChassisRotatevector * rotateK;
-//	int16_t targetspeedMC = ChassisXvector + ChassisYvectory - ChassisRotatevector * rotateK;
-//    int16_t targetspeedMD = ChassisXvector - ChassisYvectory + ChassisRotatevector * rotateK;
     
     /*麦轮解算*/
     int16_t targetspeedMA =  ChassisXvector + ChassisYvectory - ChassisRotatevector * rotateK;

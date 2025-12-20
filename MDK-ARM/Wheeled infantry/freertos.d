@@ -70,6 +70,7 @@ wheeled infantry\freertos.o: ../Bsp/M3508_Driver.h
 wheeled infantry\freertos.o: ../Bsp/M2006_Driver.h
 wheeled infantry\freertos.o: ../Bsp/M6020_Driver.h
 wheeled infantry\freertos.o: ../Application/remote_control.h
+wheeled infantry\freertos.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\freertos.o: ../Application/GimbalControl.h
 wheeled infantry\freertos.o: ../Application/chassis_control.h
 wheeled infantry\freertos.o: ../Bsp/Power_distribution.h
@@ -79,7 +80,6 @@ wheeled infantry\freertos.o: ../Application/Shoot_Control.h
 wheeled infantry\freertos.o: ../Application/All_Task.h
 wheeled infantry\freertos.o: ../Application/hipnuc_imu_task.h
 wheeled infantry\freertos.o: ../Bsp/hipnuc_dec.h
-wheeled infantry\freertos.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\freertos.o: ../Core/Inc/usart.h
 wheeled infantry\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 wheeled infantry\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h

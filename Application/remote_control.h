@@ -20,6 +20,7 @@
 #define REMOTE_CONTROL_H
 #include "struct_typedef.h"
 #include "bsp_rc.h"
+#include <stdio.h>
 
 #define SBUS_RX_BUF_NUM 36u
 

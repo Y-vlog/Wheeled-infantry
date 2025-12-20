@@ -24,9 +24,6 @@ void Shoot_Init(void)
 	shoot_mode_message.valve = VALVE_CLOSE;
 	shoot_mode_message.mode = -1;
 }
-int16_t setCurrent_Low = 0;
-int16_t setCurrent_Left = 0;
-int16_t setCurrent_Right = 0;
 
 void Shoot_FrictionWheelControl(int16_t setSpeed_trigger, int16_t setSpeed_Left, int16_t setSpeed_Right)
 {
@@ -35,9 +32,9 @@ void Shoot_FrictionWheelControl(int16_t setSpeed_trigger, int16_t setSpeed_Left,
 	M3508_GetBasicData(&FrictionWheel_motorHandle[0], 0);
 	M3508_GetBasicData(&FrictionWheel_motorHandle[1], 0);
 
-    setCurrent_Low   = M2006_SpeedLoopPIDController(&up_trigger_motor.PID_Speed_Control_Data, up_trigger_motor.Basic_Data->speed_rpm, setSpeed_trigger);
-	setCurrent_Left  = M3508_SpeedLoopPIDController(&(FrictionWheel_motorHandle[0].PID_Speed_Control_Data), FrictionWheel_motorHandle[0].Basic_Data->speed_rpm, setSpeed_Left);
-	setCurrent_Right = M3508_SpeedLoopPIDController(&(FrictionWheel_motorHandle[1].PID_Speed_Control_Data), FrictionWheel_motorHandle[1].Basic_Data->speed_rpm, setSpeed_Right);	
+    int16_t setCurrent_Low   = M2006_SpeedLoopPIDController(&up_trigger_motor.PID_Speed_Control_Data, up_trigger_motor.Basic_Data->speed_rpm, setSpeed_trigger);
+	int16_t setCurrent_Left  = M3508_SpeedLoopPIDController(&(FrictionWheel_motorHandle[0].PID_Speed_Control_Data), FrictionWheel_motorHandle[0].Basic_Data->speed_rpm, setSpeed_Left);
+	int16_t setCurrent_Right = M3508_SpeedLoopPIDController(&(FrictionWheel_motorHandle[1].PID_Speed_Control_Data), FrictionWheel_motorHandle[1].Basic_Data->speed_rpm, setSpeed_Right);	
 
 	CAN_cmd_gimbal_Frie(setCurrent_Low, setCurrent_Left, setCurrent_Right);	
 }

@@ -55,6 +55,7 @@ wheeled infantry\power_distribution.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
 wheeled infantry\power_distribution.o: ../Bsp/Power_distribution.h
 wheeled infantry\power_distribution.o: ../Application/remote_control.h
 wheeled infantry\power_distribution.o: ../Bsp/bsp_rc.h
+wheeled infantry\power_distribution.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\power_distribution.o: ../Application/gimbalControl.h
 wheeled infantry\power_distribution.o: ../Bsp/M6020_driver.h
 wheeled infantry\power_distribution.o: ../Application/chassis_control.h

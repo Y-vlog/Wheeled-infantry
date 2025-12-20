@@ -55,5 +55,6 @@ wheeled infantry\chassis_control.o: ../Bsp/Power_distribution.h
 wheeled infantry\chassis_control.o: ../Application/Chassis_Control.h
 wheeled infantry\chassis_control.o: ..\Application\remote_control.h
 wheeled infantry\chassis_control.o: ../Bsp/bsp_rc.h
+wheeled infantry\chassis_control.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\chassis_control.o: ..\Application\gimbalControl.h
 wheeled infantry\chassis_control.o: ../Bsp/M6020_driver.h

@@ -222,7 +222,7 @@ void M2006_UnlockMotor(M2006_HandleTypeDef* device)
     {
         step_start_time = HAL_GetTick();
         device->unlock_step = 1;
-        device->unlock_speed = 2000;      // 使用较低速度避免电流过大
+        device->unlock_speed = 2000;      // 来回转动解锁速度 使用较低速度避免电流过大
         device->step_duration = 500;      // 每个步骤持续时间500ms
         current_protection_triggered = 0;
         is_initialized = 1;
@@ -252,7 +252,7 @@ void M2006_UnlockMotor(M2006_HandleTypeDef* device)
                 device->is_unlocking = 0;
                 device->unlock_step = 0;
                 is_initialized = 0;
-                UP_TRIGGER_SPEED = -UP2006_SPEED;
+                UP_TRIGGER_SPEED = UP2006_SPEED;
             }
             return;
         }
@@ -320,7 +320,7 @@ void M2006_UnlockMotor(M2006_HandleTypeDef* device)
             device->is_unlocking = 0;
             device->unlock_step = 0;
             is_initialized = 0;
-            UP_TRIGGER_SPEED = -UP2006_SPEED;
+            UP_TRIGGER_SPEED = UP2006_SPEED;
         }
     }
 }

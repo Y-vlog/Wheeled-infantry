@@ -27,7 +27,7 @@ void M6020_Init(M6020_HandleTypeDef* M6020_Motor,uint8_t M6020_ID,enum PID_MODE 
     
 	if(PID_Mode == PID_POSITION)
 	{
-		switch(0x204 + M6020_ID)
+		switch(0x200 + M6020_ID)
 		{
 			case CAN_YAW_MOTOR_ID:
 			{	
@@ -62,7 +62,7 @@ void M6020_Init(M6020_HandleTypeDef* M6020_Motor,uint8_t M6020_ID,enum PID_MODE 
     
     else if(PID_Mode == PID_DELTA)
     {
-		switch(0x204 + M6020_ID)
+		switch(0x200 + M6020_ID)
 		{
 			case CAN_YAW_MOTOR_ID:
 			{	
@@ -124,7 +124,7 @@ void M6020_GetBasicData(M6020_HandleTypeDef *M6020_Motor)
 		return;
 	}
 	/*µç»úidÅÐ¶Ï*/
-	switch(M6020_Motor->Motor_ID + 0x204)
+	switch(M6020_Motor->Motor_ID + 0x202)
 	{
 	  case CAN_YAW_MOTOR_ID:
 		M6020_Motor->Basic_Data = get_yaw_gimbal_motor_measure_point();

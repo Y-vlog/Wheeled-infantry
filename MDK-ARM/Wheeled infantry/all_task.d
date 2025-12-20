@@ -43,6 +43,7 @@ wheeled infantry\all_task.o: D:\Keil\ARM\ARMCC\Bin\..\include\math.h
 wheeled infantry\all_task.o: ..\Application\remote_control.h
 wheeled infantry\all_task.o: ../Components/Algorithm/PID/struct_typedef.h
 wheeled infantry\all_task.o: ../Bsp/bsp_rc.h
+wheeled infantry\all_task.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\all_task.o: ..\Application\Chassis_Control.h
 wheeled infantry\all_task.o: ../Bsp/M3508_driver.h
 wheeled infantry\all_task.o: ../Components/Algorithm/PID/pid.h
@@ -62,7 +63,6 @@ wheeled infantry\all_task.o: ..\Application\Shoot_Control.h
 wheeled infantry\all_task.o: ../Bsp/M2006_Driver.h
 wheeled infantry\all_task.o: ..\Application\hipnuc_imu_task.h
 wheeled infantry\all_task.o: ../Bsp/hipnuc_dec.h
-wheeled infantry\all_task.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\all_task.o: ../Core/Inc/usart.h
 wheeled infantry\all_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 wheeled infantry\all_task.o: ../Core/Inc/FreeRTOSConfig.h

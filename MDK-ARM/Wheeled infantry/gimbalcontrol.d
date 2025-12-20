@@ -57,4 +57,5 @@ wheeled infantry\gimbalcontrol.o: ../Bsp/Power_distribution.h
 wheeled infantry\gimbalcontrol.o: ../Application/Chassis_Control.h
 wheeled infantry\gimbalcontrol.o: ..\Application\remote_control.h
 wheeled infantry\gimbalcontrol.o: ../Bsp/bsp_rc.h
+wheeled infantry\gimbalcontrol.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\gimbalcontrol.o: ..\Application\gimbalControl.h

@@ -2,6 +2,7 @@ wheeled infantry\remote_control.o: ..\Application\remote_control.c
 wheeled infantry\remote_control.o: ..\Application\remote_control.h
 wheeled infantry\remote_control.o: ../Components/Algorithm/PID/struct_typedef.h
 wheeled infantry\remote_control.o: ../Bsp/bsp_rc.h
+wheeled infantry\remote_control.o: D:\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 wheeled infantry\remote_control.o: ../Core/Inc/main.h
 wheeled infantry\remote_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 wheeled infantry\remote_control.o: ../Core/Inc/stm32f4xx_hal_conf.h

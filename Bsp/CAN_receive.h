@@ -36,16 +36,23 @@ typedef enum
     CAN_3508_M3_ID = 0x203,
     CAN_3508_M4_ID = 0x204,
     
-    CAN_GIMBAL_ALL_ID = 0x1FF,
+    //后续履带电机 can1
+    CAN_CHASSIS_ALL_ID_Pedrail = 0x1FF,
+    CAN_3508_M5_ID = 0x205,
+    CAN_3508_M6_ID = 0x206,
+    CAN_3508_M7_ID = 0x207,
+    CAN_3508_M8_ID = 0x208,
     
-    //can1
-    CAN_YAW_MOTOR_ID = 0x205,
-    CAN_PIT_MOTOR_ID = 0x206,
-    //can2
-    CAN_TRIGGER_UP_MOTOR_ID = 0x206,
+    //发射部分 can2
+    CAN_SHOOT_ALL_ID = 0x1FF,
+    CAN_TRIGGER_UP_MOTOR_ID = 0x206,       //0x1FF
+    CAN_TRIGGER_FIRE_MOTOR_Lift = 0x207,   //0x1FF
+    CAN_TRIGGER_FIRE_MOTOR_Right = 0x208,   
     
-    CAN_TRIGGER_FIRE_MOTOR_ID1 = 0x207,
-    CAN_TRIGGER_FIRE_MOTOR_ID2 = 0x208,   
+    //云台部分 can2
+    CAN_GIMBAL_ALL_ID = 0x2FF,
+    CAN_YAW_MOTOR_ID = 0x209,              //0x1FF
+    CAN_PIT_MOTOR_ID = 0x20A,
     
     Send_Baseboard_Data_ID = 0x3FF,
 
@@ -70,20 +77,22 @@ typedef struct
 } CAN_TX_RX_t;
 
 /**
-  * @brief          发送电机控制电流(0x205,0x206)
-  * @param[in]      yaw: (0x205) 6020电机控制电流, 范围 [-30000,30000]
-  * @param[in]      pitch: (0x206) 6020电机控制电流, 范围 [-30000,30000]
+  * @brief          发送电机控制电流(0x209,0x20A)
+  * @param[in]      yaw: (0x209) 6020电机控制电流, 范围 [-30000,30000]
+  * @param[in]      pitch: (0x20A) 6020电机控制电流, 范围 [-30000,30000]
   * @retval         none
   */
 extern void CAN_cmd_gimbal(int16_t yaw, int16_t pitch);
 
 /**
-  * @brief          发送电机控制电流(0x205,0x206)
-  * @param[in]      yaw: (0x205) 6020电机控制电流, 范围 [-30000,30000]
-  * @param[in]      pitch: (0x206) 6020电机控制电流, 范围 [-30000,30000]
+  * @brief          发送电机控制电流(0x206,0x207,0x208)
+  * @param[in]      shoot_Left: (0x207) 3508电机控制电流, 范围 [-30000,30000]
+  * @param[in]      shoot_Right: (0x208) 3508电机控制电流, 范围 [-30000,30000]
+  * @param[in]      trigger: (0x206) 2006电机控制电流, 范围 [-30000,30000]
   * @retval         none
   */
 extern void CAN_cmd_gimbal_Frie(int16_t trigger, int16_t shoot_Left, int16_t shoot_Right);
+
 /**
   * @brief          发送ID为0x700的CAN包,它会设置3508电机进入快速设置ID
   * @param[in]      none
@@ -100,6 +109,16 @@ extern void CAN_cmd_chassis_reset_ID(void);
   * @retval         none
   */
 extern void CAN_cmd_chassis(int16_t motor1, int16_t motor2, int16_t motor3, int16_t motor4);
+
+/**
+  * @brief          发送电机控制电流(0x205,0x206,0x207,0x208)
+  * @param[in]      motor1: (0x205) 3508电机控制电流, 范围 [-16384,16384]
+  * @param[in]      motor2: (0x206) 3508电机控制电流, 范围 [-16384,16384]
+  * @param[in]      motor3: (0x207) 3508电机控制电流, 范围 [-16384,16384]
+  * @param[in]      motor4: (0x208) 3508电机控制电流, 范围 [-16384,16384]
+  * @retval         none
+  */
+extern void CAN_cmd_chassis_Pedrail(int16_t motor5, int16_t motor6, int16_t motor7, int16_t motor8);
 
 /**
   * @brief          返回yaw 6020电机数据指针
@@ -132,7 +151,7 @@ extern const motor_measure_t *get_chassis_motor_measure_point(uint8_t i);
 
 /**
   * @brief          返回摩擦轮电机 3508电机数据指针
-  * @param[in]      i: 电机编号,范围[7，8]
+  * @param[in]      i: 电机编号,范围[9，10]
   * @retval         电机数据指针
   */
 extern const motor_measure_t *get_Fire_motor_measure_point(uint8_t i);

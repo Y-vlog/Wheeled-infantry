@@ -147,6 +147,7 @@ uint8_t GimbalMode = GIMBAL_MODE_WAIT;
 int16_t pitch_output = 0;
 int16_t pitch_angle_output = 0;
 int16_t pitch_GravityCompensation = 0;
+
 int16_t yaw_angle_output = 0;
 int16_t yaw_output = 0;
 
@@ -154,29 +155,41 @@ int16_t yaw_output = 0;
 int16_t set_pitch = 0;
 int16_t set_yaw = 0;
 
+static float cam_yaw_err_f = 0.0f;
+static float cam_pitch_err_f = 0.0f;
+const float VISUAL_FILTER = 0.3f;
+int16_t vision_yaw_diff = 0;
+int16_t vision_pitch_diff = 0;
+
+
 void Gimbal_Task(void const * argument)
 {
     for(;;)
     {
         switch(rc_ctrl.rc.s[1])
         {
-            case GIMBAL_MODE_GYRO:  // 陀螺模式(小陀螺)：云台保持初始指向 INS.YawTotalAngle后续为超核
+            case GIMBAL_MODE_GYRO:  // 陀螺模式(小陀螺)
             {
-                GimbalMode = GIMBAL_MODE_GYRO;
+                GimbalMode = GIMBAL_MODE_GYRO; 
                 
-                //遥控器输入转目标角度
-                set_yaw = Yaw_Gimbal_Contro_Angle(rc_ctrl.rc.ch[2]);
+                cam_yaw_err_f   = cam_yaw_err_f   * (1.0f - VISUAL_FILTER) + vision_yaw_diff   * VISUAL_FILTER;
+                cam_pitch_err_f = cam_pitch_err_f * (1.0f - VISUAL_FILTER) + vision_pitch_diff * VISUAL_FILTER;
+                
+                set_yaw = Yaw_Gimbal_Contro_Angle(rc_ctrl.rc.ch[2] + cam_yaw_err_f);
                 yaw_angle_output = set_yaw;
                 yaw_output = Yaw_Gimbal_ControlOfIMU(INS.YawTotalAngle, yaw_angle_output);
 
                 //pitch_GravityCompensation = GravityCompensation(&Pitch_Gimbal_Motor);
-                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]);
+                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3] + cam_pitch_err_f);
                 pitch_angle_output = set_pitch + pitch_GravityCompensation;
                 pitch_output = Pitch_Gimbal_ControlOfIMU(INS.Roll, pitch_angle_output);
 //                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
 //                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
                 
                 CAN_cmd_gimbal(yaw_output, pitch_output);
+                
+                cam_yaw_err_f  = vision_yaw_diff;
+                cam_pitch_err_f = vision_pitch_diff;
 
                 break;
             }
@@ -185,19 +198,24 @@ void Gimbal_Task(void const * argument)
             {
                 GimbalMode = GIMBAL_MODE_HEAD;
                 
-                //遥控器输入转目标角度
-                set_yaw = Yaw_Gimbal_Contro_Angle(rc_ctrl.rc.ch[2]);
+                cam_yaw_err_f   = cam_yaw_err_f   * (1.0f - VISUAL_FILTER) + vision_yaw_diff   * VISUAL_FILTER;
+                cam_pitch_err_f = cam_pitch_err_f * (1.0f - VISUAL_FILTER) + vision_pitch_diff * VISUAL_FILTER;
+                
+                set_yaw = Yaw_Gimbal_Contro_Angle(rc_ctrl.rc.ch[2] + cam_yaw_err_f);
                 yaw_angle_output = set_yaw;
                 yaw_output = Yaw_Gimbal_ControlOfIMU(INS.YawTotalAngle, yaw_angle_output);
 
                 //pitch_GravityCompensation = GravityCompensation(&Pitch_Gimbal_Motor);
-                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]);
+                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3] + cam_pitch_err_f);
                 pitch_angle_output = set_pitch + pitch_GravityCompensation;
                 pitch_output = Pitch_Gimbal_ControlOfIMU(INS.Roll, pitch_angle_output);
 //                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
 //                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
                 
                 CAN_cmd_gimbal(yaw_output, pitch_output);
+                
+                cam_yaw_err_f  = vision_yaw_diff;
+                cam_pitch_err_f = vision_pitch_diff;
                 
                 break;
             }
@@ -206,19 +224,24 @@ void Gimbal_Task(void const * argument)
             {
                 GimbalMode = GIMBAL_MODE_SEPA;
                 
-                //遥控器输入转目标角度
-                set_yaw = Yaw_Gimbal_Contro_Angle(rc_ctrl.rc.ch[2]);
+                cam_yaw_err_f   = cam_yaw_err_f   * (1.0f - VISUAL_FILTER) + vision_yaw_diff   * VISUAL_FILTER;
+                cam_pitch_err_f = cam_pitch_err_f * (1.0f - VISUAL_FILTER) + vision_pitch_diff * VISUAL_FILTER;
+                
+                set_yaw = Yaw_Gimbal_Contro_Angle(rc_ctrl.rc.ch[2] + cam_yaw_err_f);
                 yaw_angle_output = set_yaw;
                 yaw_output = Yaw_Gimbal_ControlOfIMU(INS.YawTotalAngle, yaw_angle_output);
 
                 //pitch_GravityCompensation = GravityCompensation(&Pitch_Gimbal_Motor);
-                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3]);
+                set_pitch = Pitch_Gimbal_Contro_Angle(rc_ctrl.rc.ch[3] + cam_pitch_err_f);
                 pitch_angle_output = set_pitch + pitch_GravityCompensation;
                 pitch_output = Pitch_Gimbal_ControlOfIMU(INS.Roll, pitch_angle_output);
 //                set_pitch = rc_ctrl.rc.ch[3] + pitch_GravityCompensation;
 //                pitch_output = Pitch_Gimbal_ControlOfECD(set_pitch);
                 
                 CAN_cmd_gimbal(yaw_output, pitch_output);
+                
+                cam_yaw_err_f  = vision_yaw_diff;
+                cam_pitch_err_f = vision_pitch_diff;
                 
                 break;
             }
@@ -247,7 +270,7 @@ void Gimbal_Task(void const * argument)
 #define GunFire   2
 
 /*拨弹速度*/
-int16_t UP_TRIGGER_SPEED = -1980; //拨弹频率需要32Hz
+int16_t UP_TRIGGER_SPEED = -1980;
 extern M2006_HandleTypeDef up_trigger_motor;
 
 void Shoot_Task(void const * argument)
@@ -265,6 +288,8 @@ void Shoot_Task(void const * argument)
             case GunStop:
             {
                 Shoot_FrictionWheelControl(0, 0, 0);
+                cam_yaw_err_f = 0;
+                cam_pitch_err_f = 0;
                 
             }break;            
             case GunFire:
@@ -283,7 +308,7 @@ void Shoot_Task(void const * argument)
                 else
                 {
                     // 未堵转且不在解锁，使用正常速度
-                    UP_TRIGGER_SPEED = -UP2006_SPEED;
+                    UP_TRIGGER_SPEED = UP2006_SPEED;
                 }
                 // 最终输出控制信号
                 Shoot_FrictionWheelControl(UP_TRIGGER_SPEED, LEFT_SHOT_SPEED, RIGHT_SHOT_SPEED);
